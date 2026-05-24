@@ -90,5 +90,41 @@
 <body>
   <!-- Chart appears here -->
   <div id="piechart"></div>
+</body><body>
+
+  <button id="exitBtn" onclick="goHome()">Exit</button>
+
+  <!-- Chart appears here -->
+  <div id="piechart"></div>
+
+  <script>
+    function goHome() {
+      window.location.href =
+      "https://dddjeremy.github.io/Level.Skillsets/";
+    }
+  </script>
+
+  <style>
+    #exitBtn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+
+      padding: 10px 18px;
+      border: none;
+      border-radius: 10px;
+
+      background: #ff4d4d;
+      color: white;
+
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #exitBtn:hover {
+      background: #e63737;
+    }
+  </style>
+
 </body>
 </html>
