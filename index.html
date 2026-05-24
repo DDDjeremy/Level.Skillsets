@@ -1,106 +1,224 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Welcome</title>
-    <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(to right, #4facfe, #00f2fe);
-            font-family: Arial, sans-serif;
-        }
+<title>Level Search</title>
 
-        .welcome-box {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 0 20px rgba(0,0,0,0.2);
-            width: 450px;
-        }
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(to right,#4facfe,#00f2fe);
+    font-family:Arial,sans-serif;
+}
 
-        h1 {
-            margin-bottom: 10px;
-        }
+.welcome-box{
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 0 20px rgba(0,0,0,0.2);
+    width:450px;
+}
 
-        p {
-            color: gray;
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
+select,input{
+    width:80%;
+    padding:12px;
+    margin:10px;
+    border-radius:10px;
+    border:2px solid #ddd;
+}
 
-        input {
-            width: 80%;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            font-size: 16px;
-            margin-bottom: 20px;
-            outline: none;
-        }
+button{
+    padding:10px 20px;
+    border:none;
+    border-radius:10px;
+    background:#4facfe;
+    color:white;
+    cursor:pointer;
+}
 
-        input:focus {
-            border-color: #4facfe;
-        }
-
-        button {
-            padding: 10px 25px;
-            border: none;
-            border-radius: 10px;
-            background: #4facfe;
-            color: white;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        button:hover {
-            background: #2e8df7;
-        }
-    </style>
+button:hover{
+    background:#2e8df7;
+}
+</style>
 </head>
+
 <body>
 
 <div class="welcome-box">
-    <h1>Welcome!</h1>
 
-    <p>
-        Search for level id<br>
-        Exceptions: clubstep, theoryofeverything2, deadlocked
-    </p>
+<h1>Welcome!</h1>
 
-    <input id="searchInput"
-           type="text"
-           placeholder="Enter level ID...">
+<p>
+Select difficulty and level
+</p>
 
-    <br>
+<select id="difficulty" onchange="updateLevels()">
 
-    <button onclick="go()">Search</button>
+<option>Select Difficulty</option>
+
+<option>Easy Demon</option>
+<option>Medium Demon</option>
+<option>Hard Demon</option>
+<option>Insane Demon</option>
+<option>Extreme Demon</option>
+
+</select>
+
+<input
+type="text"
+id="searchBox"
+placeholder="Search level..."
+onkeyup="filterLevels()">
+
+<select id="levels">
+
+<option>Select Level</option>
+
+</select>
+
+<br><br>
+
+<button onclick="go()">
+Search
+</button>
+
 </div>
 
 <script>
-function go() {
-    let answer = document
-        .getElementById("searchInput")
-        .value
-        .trim();
 
-    if(answer !== ""){
-        window.location.href =
-        "https://dddjeremy.github.io/Level.Skillsets/" +
-        answer +
-        ".html";
-    }
+const levelData={
+
+"Easy Demon":[
+"Clubstep",
+"Theory of Everything 2",
+"Deadlocked",
+"The Nightmare",
+"The Lightning Road",
+"Platinum Adventure"
+],
+
+"Medium Demon":[
+"Maffstep",
+"B",
+"Mechanical Showdown"
+],
+
+"Hard Demon":[
+"Placeholder",
+"Placeholder"
+],
+
+"Insane Demon":[
+"Placeholder"
+],
+
+"Extreme Demon":[
+"Bro",
+"Yeah"
+]
+
+};
+
+function updateLevels(){
+
+let difficulty=
+document.getElementById("difficulty").value;
+
+let levelSelect=
+document.getElementById("levels");
+
+levelSelect.innerHTML="";
+
+if(levelData[difficulty]){
+
+levelData[difficulty].forEach(level=>{
+
+let option=
+document.createElement("option");
+
+option.text=level;
+
+option.value=level;
+
+levelSelect.add(option);
+
+});
+
 }
 
-document.getElementById("searchInput")
-.addEventListener("keypress", function(e){
-    if(e.key === "Enter"){
-        go();
-    }
+}
+
+function filterLevels(){
+
+let search=
+document.getElementById("searchBox")
+.value.toLowerCase();
+
+let difficulty=
+document.getElementById("difficulty")
+.value;
+
+let levelSelect=
+document.getElementById("levels");
+
+levelSelect.innerHTML="";
+
+if(levelData[difficulty]){
+
+levelData[difficulty]
+.filter(level=>
+
+level.toLowerCase()
+.includes(search)
+
+)
+
+.forEach(level=>{
+
+let option=
+document.createElement("option");
+
+option.text=level;
+
+option.value=level;
+
+levelSelect.add(option);
+
 });
+
+}
+
+}
+
+function go(){
+
+const links = {
+
+"Clubstep":"clubstep.html",
+"Theory of Everything 2":"theoryofeverything2.html",
+"Deadlocked":"deadlocked.html",
+"The Nightmare":"thenightmare.html",
+"THE LIGHTNING ROAD":"thelightningroad.html"
+
+};
+
+let level =
+document.getElementById("levels").value;
+
+if(level && links[level]){
+
+window.location.href =
+"https://dddjeremy.github.io/Level.Skillsets/"
++ links[level];
+
+}
+
+}
+
 </script>
 
 </body>
