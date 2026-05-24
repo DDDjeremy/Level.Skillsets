@@ -127,87 +127,87 @@ const levelData={
 
 };
 
-function updateLevels(){
+function updateLevels() {
 
-let difficulty =
-document.getElementById("difficulty").value;
+    let difficulty =
+    document.getElementById("difficulty").value;
 
-let levelSelect =
-document.getElementById("levels");
+    let levelSelect =
+    document.getElementById("levels");
 
-levelSelect.innerHTML = "";
+    // wipe dropdown
+    levelSelect.innerHTML = "";
 
-// add placeholder back
-let defaultOption =
-document.createElement("option");
+    // placeholder
+    let first =
+    document.createElement("option");
 
-defaultOption.text = "Select Level";
-defaultOption.value = "";
+    first.text = "-- Select Level --";
+    first.value = "";
+    first.disabled = true;
+    first.selected = true;
 
-levelSelect.add(defaultOption);
+    levelSelect.add(first);
 
-if(levelData[difficulty]){
+    // don't add anything if placeholder selected
+    if (!levelData[difficulty]) return;
 
-levelData[difficulty].forEach(level=>{
+    levelData[difficulty].forEach(level => {
 
-let option =
-document.createElement("option");
+        let option =
+        document.createElement("option");
 
-option.text = level;
-option.value = level;
+        option.textContent = level;
+        option.value = level;
 
-levelSelect.add(option);
+        levelSelect.appendChild(option);
 
-});
-
-}
-
-}
-
-function filterLevels(){
-
-let search =
-document.getElementById("searchBox")
-.value.toLowerCase();
-
-let difficulty =
-document.getElementById("difficulty")
-.value;
-
-let levelSelect =
-document.getElementById("levels");
-
-levelSelect.innerHTML = "";
-
-// keep placeholder
-let defaultOption =
-document.createElement("option");
-
-defaultOption.text = "Select Level";
-defaultOption.value = "";
-
-levelSelect.add(defaultOption);
-
-if(levelData[difficulty]){
-
-levelData[difficulty]
-.filter(level =>
-level.toLowerCase().includes(search)
-)
-
-.forEach(level=>{
-
-let option =
-document.createElement("option");
-
-option.text = level;
-option.value = level;
-
-levelSelect.add(option);
-
-});
+    });
 
 }
+
+function filterLevels() {
+
+    let search =
+    document.getElementById("searchBox")
+    .value.toLowerCase();
+
+    let difficulty =
+    document.getElementById("difficulty")
+    .value;
+
+    let levelSelect =
+    document.getElementById("levels");
+
+    levelSelect.innerHTML = "";
+
+    let first =
+    document.createElement("option");
+
+    first.text = "-- Select Level --";
+    first.value = "";
+    first.disabled = true;
+    first.selected = true;
+
+    levelSelect.add(first);
+
+    if (!levelData[difficulty]) return;
+
+    levelData[difficulty]
+    .filter(level =>
+        level.toLowerCase().includes(search)
+    )
+    .forEach(level => {
+
+        let option =
+        document.createElement("option");
+
+        option.textContent = level;
+        option.value = level;
+
+        levelSelect.appendChild(option);
+
+    });
 
 }
 
