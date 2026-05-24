@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pie Chart</title>
+
+  <!-- Google Charts Loader -->
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+
+  <script>
+    // Load chart package
+    google.charts.load('current', {'packages':['corechart']});
+
+    // Draw chart when loaded
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+      // DATA
+      var data = google.visualization.arrayToDataTable([
+        ['Category', 'Amount'],
+
+        ['Cube', 69],
+        ['Ship', 1516],
+        ['Ball', 27],
+        ['UFO', 667],
+        ['Wave', 0],
+        ['Robot', 0],
+        ['Spider', 0],
+        ['Swing', 0],
+        ['Nerve Control', 778],
+        ['Memory', 321],
+        ['Learny', 266],
+        ['Duals', 0],
+        ['Chokepoints', 529],
+        ['High CPS', 0],
+        ['Timings', 90],
+        ['Flow', 0],
+        ['Overall', 116],
+        ['Gimmicky', 0],
+        ['Fast-Paced', 0],
+        ['Slow-Paced', 42]
+      ]);
+
+      // SETTINGS
+      var options = {
+        title: 'Skillset Profile: Clubstep',
+
+        width: 900,
+        height: 700,
+
+        // 0 = normal pie chart
+        // 0.4 = donut chart
+        pieHole: 0,
+        
+        // CUSTOM COLORS
+        colors: [
+          '#3366CC',
+          '#DC3912',
+          '#FF9900',
+          '#109618',
+          '#990099',
+          '#0099C6',
+          '#DD4477',
+          '#66AA00',
+          '#B82E2E',
+          '#316395',
+          '#994499',
+          '#22AA99',
+          '#AAAA11',
+          '#6633CC',
+          '#E67300',
+          '#8B0707',
+          '#651067',
+          '#329262',
+          '#5574A6',
+          '#3B3EAC'
+        ]
+      };
+
+      // CREATE CHART
+      var chart = new google.visualization.PieChart(
+        document.getElementById('piechart')
+      );
+
+      chart.draw(data, options);
+    }
+  </script>
+</head>
+
+<body>
+  <!-- Chart appears here -->
+  <div id="piechart"></div>
+</body>
+</html>
