@@ -125,24 +125,32 @@ const levelData={
 
 function updateLevels(){
 
-let difficulty=
+let difficulty =
 document.getElementById("difficulty").value;
 
-let levelSelect=
+let levelSelect =
 document.getElementById("levels");
 
-levelSelect.innerHTML="";
+levelSelect.innerHTML = "";
+
+// add placeholder back
+let defaultOption =
+document.createElement("option");
+
+defaultOption.text = "Select Level";
+defaultOption.value = "";
+
+levelSelect.add(defaultOption);
 
 if(levelData[difficulty]){
 
 levelData[difficulty].forEach(level=>{
 
-let option=
+let option =
 document.createElement("option");
 
-option.text=level;
-
-option.value=level;
+option.text = level;
+option.value = level;
 
 levelSelect.add(option);
 
@@ -154,37 +162,42 @@ levelSelect.add(option);
 
 function filterLevels(){
 
-let search=
+let search =
 document.getElementById("searchBox")
 .value.toLowerCase();
 
-let difficulty=
+let difficulty =
 document.getElementById("difficulty")
 .value;
 
-let levelSelect=
+let levelSelect =
 document.getElementById("levels");
 
-levelSelect.innerHTML="";
+levelSelect.innerHTML = "";
+
+// keep placeholder
+let defaultOption =
+document.createElement("option");
+
+defaultOption.text = "Select Level";
+defaultOption.value = "";
+
+levelSelect.add(defaultOption);
 
 if(levelData[difficulty]){
 
 levelData[difficulty]
-.filter(level=>
-
-level.toLowerCase()
-.includes(search)
-
+.filter(level =>
+level.toLowerCase().includes(search)
 )
 
 .forEach(level=>{
 
-let option=
+let option =
 document.createElement("option");
 
-option.text=level;
-
-option.value=level;
+option.text = level;
+option.value = level;
 
 levelSelect.add(option);
 
