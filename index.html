@@ -68,7 +68,7 @@
 
     <p>
         Search for level id<br>
-        Exceptions: clubstep, toe2, deadlocked
+        Exceptions: clubstep, theoryofeverything2, deadlocked
     </p>
 
     <input id="searchInput"
@@ -85,12 +85,11 @@ function go() {
     let answer = document
         .getElementById("searchInput")
         .value
-        .trim()
-        .toLowerCase();
+        .trim();
 
     if(answer !== ""){
         window.location.href =
-        "https://dddjeremy.github.io/clubstep-skillsetprofile/" +
+        "https://dddjeremy.github.io/Level.Skillsets/" +
         answer +
         ".html";
     }
