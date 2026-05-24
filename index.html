@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            font-family: Arial, sans-serif;
+        }
+
+        .welcome-box {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            width: 450px;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: gray;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 80%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #4facfe;
+        }
+
+        button {
+            padding: 10px 25px;
+            border: none;
+            border-radius: 10px;
+            background: #4facfe;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #2e8df7;
+        }
+    </style>
+</head>
+<body>
+
+<div class="welcome-box">
+    <h1>Welcome!</h1>
+
+    <p>
+        Search for level id<br>
+        Exceptions: clubstep, toe2, deadlocked
+    </p>
+
+    <input id="searchInput"
+           type="text"
+           placeholder="Enter level ID...">
+
+    <br>
+
+    <button onclick="go()">Search</button>
+</div>
+
+<script>
+function go() {
+    let answer = document
+        .getElementById("searchInput")
+        .value
+        .trim()
+        .toLowerCase();
+
+    if(answer !== ""){
+        window.location.href = "/" + answer + ".html";
+    }
+}
+
+document.getElementById("searchInput")
+.addEventListener("keypress", function(e){
+    if(e.key === "Enter"){
+        go();
+    }
+});
+</script>
+
+</body>
+</html>
